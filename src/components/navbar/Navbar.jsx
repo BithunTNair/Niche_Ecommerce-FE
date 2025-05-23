@@ -27,7 +27,6 @@ const Navbar = () => {
         <Store className="text-[var(--yellow)]" /> NicheNest
       </h1>
 
-
       <nav className="hidden lg:flex items-center space-x-4 text-gray-700">
         <Button onClick={() => navigate("/")}>
           <Home className="w-5 h-5" />
@@ -42,13 +41,13 @@ const Navbar = () => {
           </Button>
           {isDropdownOpen && (
             <div className="absolute top-full mt-2 bg-[var(--black)] shadow-lg rounded-xl p-2 z-50 w-48 space-y-2">
-              <Button variant="ghost" className="w-full justify-start gap-2">
+              <Button variant="ghost" className="w-full justify-start gap-2" onClick={() => navigate("/categories/art-decor")}>
                 <Flower className="w-4 h-4" /> Art & Decor
               </Button>
-              <Button variant="ghost" className="w-full justify-start gap-2">
+              <Button variant="ghost" className="w-full justify-start gap-2" onClick={() => navigate("/categories/jewelry")}>
                 <Gem className="w-4 h-4" /> Jewelry
               </Button>
-              <Button variant="ghost" className="w-full justify-start gap-2">
+              <Button variant="ghost" className="w-full justify-start gap-2" onClick={() => navigate("/categories/clothing")}>
                 <Shirt className="w-4 h-4" /> Clothing
               </Button>
             </div>
@@ -66,14 +65,12 @@ const Navbar = () => {
         </Button>
       </nav>
 
-
       <button
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         className="lg:hidden p-2 rounded-md text-gray-600 hover:bg-gray-100"
       >
         {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
-
 
       {isMenuOpen && (
         <div className="absolute top-full right-4 mt-3 w-60 bg-white shadow-lg rounded-xl p-4 flex flex-col gap-2 z-50 lg:hidden">
@@ -88,13 +85,13 @@ const Navbar = () => {
           </Button>
           {isDropdownOpen && (
             <div className="pl-4 space-y-1">
-              <Button className="w-full justify-start gap-2">
+              <Button className="w-full justify-start gap-2" onClick={() => navigate("/categories/art-decor")}>
                 <Flower className="w-4 h-4" /> Art & Decor
               </Button>
-              <Button className="w-full justify-start gap-2">
+              <Button className="w-full justify-start gap-2" onClick={() => navigate("/categories/jewelry")}>
                 <Gem className="w-4 h-4" /> Jewelry
               </Button>
-              <Button className="w-full justify-start gap-2">
+              <Button className="w-full justify-start gap-2" onClick={() => navigate("/categories/clothing")}>
                 <Shirt className="w-4 h-4" /> Clothing
               </Button>
             </div>
@@ -113,4 +110,5 @@ const Navbar = () => {
     </header>
   );
 }
-export default Navbar
+
+export default Navbar;
