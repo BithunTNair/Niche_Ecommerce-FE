@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Navbar from "../../../navbar/Navbar";
 import { Input } from "../../../reusable/Input";
 import { Button } from "../../../reusable/Button";
@@ -45,9 +44,7 @@ const Clothing = () => {
                 Handwoven Outfit #{item}
               </h3>
               <p className="text-sm text-gray-500 mb-3">Category: Clothing</p>
-              <Link to={`/categories/clothing/${item}`}>
-                <Button className="w-full rounded-xl">View Details</Button>
-              </Link>
+              <Button className="w-full rounded-xl">View Details</Button>
             </div>
           ))}
         </div>
