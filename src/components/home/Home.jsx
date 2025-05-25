@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom"; // ✅ for dynamic routing
 import { Button } from "../reusable/Button";
 import { Input } from "../reusable/Input";
 import Navbar from "../navbar/Navbar";
@@ -53,7 +54,9 @@ export default function HomePage() {
               <p className="text-sm text-gray-500 mb-3">
                 Category: Art & Decor
               </p>
-              <Button className="w-full rounded-xl">View Details</Button>
+              <Link to={`/product/${item}`}>
+                <Button className="w-full rounded-xl">View Details</Button>
+              </Link>
             </div>
           ))}
         </div>

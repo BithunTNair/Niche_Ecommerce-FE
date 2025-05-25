@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../../../navbar/Navbar";
 import { Input } from "../../../reusable/Input";
 import { Button } from "../../../reusable/Button";
@@ -44,7 +45,9 @@ const ArtDecor = () => {
                 Decorative Piece #{item}
               </h3>
               <p className="text-sm text-gray-500 mb-3">Category: Art & Decor</p>
-              <Button className="w-full rounded-xl">View Details</Button>
+              <Link to={`/categories/art-decor/${item}`}>
+                <Button className="w-full rounded-xl">View Details</Button>
+              </Link>
             </div>
           ))}
         </div>
