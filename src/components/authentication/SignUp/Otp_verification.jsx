@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 
 const Otp_verification = () => {
   const navigate = useNavigate();
-  const { signedupUser } = useSelector(store => store.signedupUser);
+  const user= localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
   const {
     register,
     handleSubmit,
@@ -23,7 +23,7 @@ const Otp_verification = () => {
     try {
       axios({
         method: 'POST',
-        url: `${import.meta.env.VITE_BASE_URL}/auth/verify_otp/${signedupUser._id}`,
+        url: `${import.meta.env.VITE_BASE_URL}/auth/verify_otp/${user._id}`,
         data: { otp: joinedOTP }
       }).then((response) => {
         console.log(response.data);

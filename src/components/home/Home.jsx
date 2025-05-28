@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../reusable/Button";
 import { Input } from "../reusable/Input";
 import Navbar from "../navbar/Navbar";
+import { useEffect } from "react";
+import AxiosInstance from "../../config/Api_call";
 
 export default function HomePage() {
+
+  const [products, setProducts]=useState([]);
+
+  useEffect(() => {
+
+    AxiosInstance.get(`${import.meta.env.VITE_BASE_URL}/user/approved_products`)
+      .then((res) => {
+
+        setProducts(res.data.approvedProducts.slice(0, 6));
+      })
+      .catch((err) => {
+        console.error("Error fetching products", err);
+      });
+  }, []);
   return (
     <>
 
@@ -34,21 +50,25 @@ export default function HomePage() {
             Featured Products
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
-            {[1, 2, 3, 4, 5, 6].map((item) => (
+            {products.map((item, index) => (
               <div
-                key={item}
+                key={item._id || index}
                 className="bg-white rounded-2xl shadow-md p-5 hover:shadow-xl transition transform hover:scale-[1.02]"
               >
                 <div className="h-40 sm:h-44 bg-[var(--lightblack)] rounded-xl mb-4 flex items-center justify-center text-[var(--white)] text-lg sm:text-xl font-bold">
-                 Product Img
+                  {item.image ? <img src={item.image} alt="Product" className="h-full object-cover rounded-xl" /> : "Product Img"}
                 </div>
                 <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-1">
-                  Handmade Item #{item}
+                  {item.name || `Handmade Item #${index + 1}`}
                 </h3>
                 <p className="text-sm text-gray-500 mb-3">
-                  Category: Art & Decor
+                  Category: {item.category || "Art & Decor"}
                 </p>
-                <Button className="w-full rounded-xl">View Details</Button>
+                  <p className="text-sm text-gray-500 mb-3">
+                  Price: {item.price || ""}
+                </p>
+                <Button className="w-full rounded-xl mt-2">Add To Cart</Button>
+                  <Button className="w-full rounded-xl mt-2">By Now</Button>
               </div>
             ))}
           </div>

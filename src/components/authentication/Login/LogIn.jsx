@@ -4,9 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { errorToast, successToast } from '../../../plugins/toast';
 import axios from 'axios';
 import { Input } from '../../reusable/Input';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '../../../redux_toolkit/userSlice';
+
 
 const Login = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.user)
     const {
         register,
         handleSubmit,
@@ -23,7 +28,11 @@ const Login = () => {
             }).then((response) => {
                 console.log(response.data);
                 successToast('Welcome To Our World');
-                navigate('/home')
+                 navigate('/home');
+                localStorage.setItem('token', response.data.token);
+                const userData = localStorage.setItem('user', JSON.stringify(response.data.user));
+                dispatch(setUser(userData))
+               
 
             })
         } catch (error) {

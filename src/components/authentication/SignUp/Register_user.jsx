@@ -3,14 +3,9 @@ import { useForm } from "react-hook-form";
 import axios from 'axios'
 import { errorToast, successToast } from '../../../plugins/toast';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'
-import { setSignedupUser } from '../../../redux_toolkit/signedupUserslice';
 import { Input } from '../../reusable/Input';
-
 const Register_user = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { signedupUser } = useSelector(store => store.signedupUser)
   const {
     register,
     handleSubmit,
@@ -27,10 +22,9 @@ const Register_user = () => {
       }).then((response) => {
         console.log(response.data);
         successToast('User Registration Successfull');
-
         navigate('/generate_otp');
-        localStorage.setItem('signedupUser', JSON.stringify(response.data.registered_user));
-        dispatch(setSignedupUser(response.data.registered_user));
+        localStorage.setItem('user', JSON.stringify(response.data.registered_user));
+
       })
     } catch (error) {
       console.log(error.data);
@@ -66,19 +60,6 @@ const Register_user = () => {
             />
             {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
 
-            <Input
-              type="password"
-              placeholder="Password"
-              className="w-full  rounded-xl  border-[var(--lightblack)] bg-[var(--white)] text-[var(--black)] placeholder-[var(--black)] placeholder:opacity-60 focus:outline-none focus:ring-2 focus:ring-[var(--yellow)]"
-              {...register('password', {
-                required: 'Password is required',
-                pattern: {
-                  value: /^[A-Za-z0-9]{8,}$/,
-                  message: 'Password must be at least 8 characters (letters or numbers)',
-                },
-              })}
-            />
-            {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
 
             <Input
               type="text"

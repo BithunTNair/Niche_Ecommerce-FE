@@ -8,8 +8,7 @@ import { Input } from '../../reusable/Input';
 
 const Set_password = () => {
   const navigate = useNavigate();
-  const { signedupUser } = useSelector(store => store.signedupUser);
-  console.log(signedupUser.id);
+  const user=localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
 
   const {
     register,
@@ -22,9 +21,9 @@ const Set_password = () => {
     try {
       axios({
         method: 'POST',
-        url: `${import.meta.env.VITE_BASE_URL}/auth/create_password/${signedupUser._id}`,
+        url: `${import.meta.env.VITE_BASE_URL}/auth/create_password/${user._id}`,
         data: data,
-        params: { id: signedupUser._id }
+        params: { id:user._id }
       }).then((response) => {
         console.log(response.data);
         successToast('Your account is created successfully');

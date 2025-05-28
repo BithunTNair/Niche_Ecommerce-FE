@@ -7,6 +7,7 @@ import Login from '../components/authentication/Login/LogIn'
 import Home from '../components/home/Home'
 import Register_user from './authentication/SignUp/Register_user'
 import Generate_otp from './authentication/SignUp/Generate_otp'
+import Cart from '../components/cart/Cart'
 
 const Routing = () => {
     return (
@@ -20,6 +21,7 @@ const Routing = () => {
                     <Route path='/set_password' element={<SetPassword/>} />
                     <Route path='/login' element={<Login/>} />
                     <Route path='/home' element={<Home/>} />
+                    <Route path='/cart' element={<Cart/>} />
                 </Routes>
             </Router>
         </>
