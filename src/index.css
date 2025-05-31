@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
-
+body{
+  background-color: var(--gray);
+}
 :root{
   --black:#000000;
   --lightblack:#1A1A1A;

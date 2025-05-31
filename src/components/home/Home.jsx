@@ -4,10 +4,11 @@ import { Input } from "../reusable/Input";
 import Navbar from "../navbar/Navbar";
 import { useEffect } from "react";
 import AxiosInstance from "../../config/Api_call";
+import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
-
-  const [products, setProducts]=useState([]);
+  const navigate = useNavigate();
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
 
@@ -64,11 +65,11 @@ export default function HomePage() {
                 <p className="text-sm text-gray-500 mb-3">
                   Category: {item.category || "Art & Decor"}
                 </p>
-                  <p className="text-sm text-gray-500 mb-3">
+                <p className="text-sm text-gray-500 mb-3">
                   Price: {item.price || ""}
                 </p>
-                <Button className="w-full rounded-xl mt-2">Add To Cart</Button>
-                  <Button className="w-full rounded-xl mt-2">By Now</Button>
+                <Button className="w-full rounded-xl mt-2" onClick={() => { navigate(`/view_product/${item._id}`) }} >View Product</Button>
+
               </div>
             ))}
           </div>

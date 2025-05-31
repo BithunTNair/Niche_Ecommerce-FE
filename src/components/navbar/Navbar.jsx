@@ -14,11 +14,13 @@ import {
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../reusable/Button";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
+  const {user} =useSelector((state) => state.user);
 
   return (
     <header className="bg-[var(--black)] shadow-md rounded-2xl px-4 py-4 sm:px-10 mb-10 flex justify-between items-center relative">
@@ -62,7 +64,7 @@ const Navbar = () => {
           <LogIn className="w-4 h-4" /> Signup/Login
         </Button>
         <Button onClick={() => navigate("/profile")} className="flex items-center gap-1">
-          <User className="w-4 h-4" /> Profile
+        <User className="w-4 h-4" /> Profile
         </Button>
       </nav>
 
